@@ -135,7 +135,7 @@ async function main() {
           'Vista paradisíaca',
           'Luxuoso',
         ],
-        recommended: false,
+        recommended: true,
         maxGuests: 5,
       },
       {
@@ -162,7 +162,7 @@ async function main() {
           'Vista paradisíaca',
           'Luxuoso',
         ],
-        recommended: false,
+        recommended: true,
         maxGuests: 5,
       },
       {
@@ -189,7 +189,7 @@ async function main() {
           'Vista paradisíaca',
           'Luxuoso',
         ],
-        recommended: false,
+        recommended: true,
         maxGuests: 5,
       },
       {
@@ -216,7 +216,7 @@ async function main() {
           'Vista paradisíaca',
           'Luxuoso',
         ],
-        recommended: false,
+        recommended: true,
         maxGuests: 5,
       },
       {
@@ -243,7 +243,7 @@ async function main() {
           'Vista paradisíaca',
           'Luxuoso',
         ],
-        recommended: false,
+        recommended: true,
         maxGuests: 5,
       },
     ],

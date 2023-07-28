@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -11,18 +12,21 @@ datasource db {
 }
 
 model Trip {
-  id           String            @id @default(uuid())
-  name         String
-  location     String
-  startDate    String
-  endDate      String
-  pricePerDay  Decimal           @db.Decimal(8, 2)
-  description  String
-  coverImage   String
-  imageUrl     String[]
-  highlights   String[]
-  maxGuests    Int
-  reservations TripReservation[]
+  id                  String            @id @default(uuid())
+  name                String
+  location            String
+  locationDescription String            @default("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
+  startDate           DateTime
+  endDate             DateTime
+  pricePerDay         Decimal           @db.Decimal(8, 2)
+  description         String
+  coverImage          String
+  imagesUrl           String[]
+  highlights          String[]
+  maxGuests           Int
+  reservations        TripReservation[]
+  countryCode         String
+  recommended         Boolean           @default(false)
 }
 
 model TripReservation {
@@ -30,10 +34,11 @@ model TripReservation {
   tripId    String
   trip      Trip     @relation(fields: [tripId], references: [id])
   userId    String
-  use       User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
   startDate DateTime
   endDate   DateTime
-  totalPayd Decimal  @db.Decimal(8, 2)
+  totalPaid Decimal  @db.Decimal(8, 2)
+  guests    Int      @default(5)
 }
 
 model Account {
@@ -71,7 +76,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  reservation   TripReservation[]
+  reservations  TripReservation[]
 }
 
 model VerificationToken {
