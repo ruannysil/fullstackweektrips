@@ -3,31 +3,100 @@
 import Button from '@/components/Button';
 import DatePicker from '@/components/DatePicker';
 import Input from '@/components/Input';
-import { Trip } from '@prisma/client';
+
 import React from 'react';
+import { Controller, useForm } from 'react-hook-form';
 
 interface TripReservationProps {
-  trip: Trip;
+  tripStarDate: Date;
+  tripEndDate: Date;
+  maxGuests: number;
 }
 
-const TripReservation = ({ trip }: TripReservationProps) => {
+interface TripReservationForm {
+  guests: Number;
+  startDate: Date | null;
+  endDate: Date | null;
+}
+
+const TripReservation = ({
+  maxGuests,
+  tripEndDate,
+  tripStarDate,
+}: TripReservationProps) => {
+  const {
+    register,
+    handleSubmit,
+    control,
+    watch,
+    formState: { errors },
+  } = useForm<TripReservationForm>();
+
+  const onSubmit = (data: any) => {
+    console.log({ data });
+  };
+
+  const startDate = watch('startDate');
+
   return (
     <div className="flex flex-col px-5">
       <div className="flex gap-4">
-        <DatePicker
-          placeholderText="Data de Início"
-          onChange={() => {}}
-          className="w-full"
+        <Controller
+          name="startDate"
+          rules={{
+            required: {
+              value: true,
+              message: 'Data inicial é obrigatória.',
+            },
+          }}
+          control={control}
+          render={({ field }) => (
+            <DatePicker
+              placeholderText="Data de Início"
+              onChange={field.onChange}
+              selected={field.value}
+              className="w-full"
+              error={!!errors.startDate}
+              errorMessage={errors?.startDate?.message}
+              minDate={tripStarDate}
+            />
+          )}
         />
-        <DatePicker
-          placeholderText="Data Final"
-          onChange={() => {}}
-          className="w-full"
+
+        <Controller
+          name="endDate"
+          rules={{
+            required: {
+              value: true,
+              message: 'Data final é obrigatória.',
+            },
+          }}
+          control={control}
+          render={({ field }) => (
+            <DatePicker
+              placeholderText="Data final"
+              onChange={field.onChange}
+              selected={field.value}
+              className="w-full"
+              error={!!errors.endDate}
+              errorMessage={errors?.endDate?.message}
+              maxDate={tripEndDate}
+              minDate={startDate ?? tripStarDate}
+            />
+          )}
         />
       </div>
       <Input
-        placeholder={`Número de hóspedes (max: ${trip.maxGuests})`}
+        {...register('guests', {
+          required: {
+            value: true,
+            message: 'Número do hóspedes é obrigatório.',
+          },
+        })}
+        placeholder={`Número de hóspedes (max: ${maxGuests})`}
         className="mt-4"
+        error={!!errors?.guests}
+        errorMessage={errors?.guests?.message}
       />
 
       <div className="flex justify-between mt-2">
@@ -35,7 +104,12 @@ const TripReservation = ({ trip }: TripReservationProps) => {
         <p className="text-sm font-medium text-primaryDarker">R$2500</p>
       </div>
       <div className="w-full pb-10 border-b border-grayLighter">
-        <Button className="w-full mt-3">Reservar agora</Button>
+        <Button
+          onClick={() => handleSubmit(onSubmit)()}
+          className="w-full mt-3"
+        >
+          Reservar agora
+        </Button>
       </div>
     </div>
   );
