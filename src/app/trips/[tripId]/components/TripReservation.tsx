@@ -25,13 +25,18 @@ const TripReservation = ({ trip }: TripReservationProps) => {
           className="w-full"
         />
       </div>
-      <Input placeholder={`Número de hóspedes (max: ${trip.maxGuests})`} className="mt-4" />
+      <Input
+        placeholder={`Número de hóspedes (max: ${trip.maxGuests})`}
+        className="mt-4"
+      />
 
-      <div className='flex justify-between mt-2'>
-        <p className='text-sm font-medium text-primaryDarker'>Total:</p>
-        <p className='text-sm font-medium text-primaryDarker'>R$2500</p>
+      <div className="flex justify-between mt-2">
+        <p className="text-sm font-medium text-primaryDarker">Total:</p>
+        <p className="text-sm font-medium text-primaryDarker">R$2500</p>
       </div>
-      <Button className='mt-3'>Reservar agora</Button>
+      <div className="w-full pb-10 border-b border-grayLighter">
+        <Button className="w-full mt-3">Reservar agora</Button>
+      </div>
     </div>
   );
 };
