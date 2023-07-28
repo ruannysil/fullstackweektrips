@@ -30,7 +30,7 @@ const Header = () => {
       )}
 
       {status === 'authenticated' && data.user && (
-        <div className="relative flex items-center gap-3 p-2 px-3 border border-solid rounded-full border-grayLighter">
+        <div className="relative z-50 flex items-center gap-3 p-2 px-3 border border-solid rounded-full border-grayLighter">
           <AiOutlineMenu size={16} onClick={handleMenuClick} className='cursor-pointer' />
 
           <Image

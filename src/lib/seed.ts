@@ -11,6 +11,7 @@ async function main() {
         startDate: new Date("2023-07-03"),
         endDate: new Date("2023-07-30"),
         location: "Amalfi, Itália",
+        locationDescription: "O Hotel Aurora está localizado em Amalfi, Itália, em meio às majestosas montanhas. Com seus jardins exuberantes e arquitetura elegante, oferece uma experiência memorável em um cenário deslumbrante.",
         countryCode: "IT",
         coverImage:
           "https://images.unsplash.com/photo-1455587734955-081b22074882?ixlib=rb-4.0.3&ixid=M3wxMA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
@@ -31,6 +32,7 @@ async function main() {
         startDate: new Date("2023-07-03"),
         endDate: new Date("2023-07-30"),
         location: "New York, Estados Unidos",
+        locationDescription: "O Hotel Palace está localizado em Nova York, Estados Unidos, em uma localização privilegiada com vistas panorâmicas deslumbrantes, proporcionando uma estadia inesquecível de luxo e elegância.",
         countryCode: "US",
         coverImage:
           "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
@@ -51,6 +53,7 @@ async function main() {
         startDate: new Date("2023-07-03"),
         endDate: new Date("2023-07-30"),
         location: "Florença, Itália",
+        locationDescription: "A Royal Oasis está situada em Florença, Itália, combinando uma arquitetura imponente, decoração refinada e serviços de alta qualidade para proporcionar uma experiência de conforto e sofisticação.",
         countryCode: "IT",
         coverImage:
           "https://images.unsplash.com/photo-1534612899740-55c821a90129?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
@@ -71,6 +74,7 @@ async function main() {
         startDate: new Date("2023-07-03"),
         endDate: new Date("2023-07-30"),
         location: "Lago Sereno, Suíça",
+        locationDescription: "O Azure Haven Retreat é um oásis de luxo localizado em Lago Sereno, Suíça, onde as águas cristalinas do oceano encontram praias intocadas de areia branca.",
         countryCode: "CH",
         coverImage:
           "https://images.unsplash.com/photo-1568084680786-a84f91d1153c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
@@ -91,6 +95,7 @@ async function main() {
         startDate: new Date("2023-07-03"),
         endDate: new Date("2023-07-30"),
         location: "Madrid, Espanha",
+        locationDescription: "O Palazzo Sereno é um hotel de luxo localizado em Madrid, Espanha, em uma cidade histórica da Europa. Com arquitetura deslumbrante e ambiente elegante, oferece uma verdadeira experiência de luxo e requinte.",
         countryCode: "ES",
         coverImage:
           "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
@@ -111,6 +116,7 @@ async function main() {
         startDate: new Date("2023-07-03"),
         endDate: new Date("2023-07-30"),
         location: "Montreal, Canadá",
+        locationDescription: "O Mountain Peak Lodge está situado em Montreal, Canadá, em uma região montanhosa serena, cercada por paisagens deslumbrantes e tranquilidade.",
         countryCode: "CA",
         coverImage:
           "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
@@ -131,6 +137,7 @@ async function main() {
         startDate: new Date("2023-07-03"),
         endDate: new Date("2023-07-30"),
         location: "Oslo, Noruega",
+        locationDescription: "O Encanto da Serra é uma pousada encantadora localizada em Oslo, Noruega, em uma pequena cidade costeira, oferecendo aos hóspedes uma estadia tranquila e relaxante perto da praia.",
         countryCode: "NO",
         coverImage:
           "https://images.unsplash.com/photo-1610530531783-56a4e92a3305?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
@@ -151,6 +158,7 @@ async function main() {
         startDate: new Date("2023-07-03"),
         endDate: new Date("2023-07-30"),
         location: "Amsterdam, Holanda",
+        locationDescription: "O Rancho Sereno é uma fazenda encantadora situada em Amsterdam, Holanda, em uma região rural tranquila, oferecendo aos visitantes uma experiência autêntica de vida no campo.",
         countryCode: "NL",
         coverImage:
           "https://images.unsplash.com/photo-1500076656116-558758c991c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80",
@@ -171,6 +179,7 @@ async function main() {
         startDate: new Date("2023-07-03"),
         endDate: new Date("2023-07-30"),
         location: "Paris, França",
+        locationDescription: "O Chalé Serenidade é um refúgio encantador situado em Paris, França, em uma área montanhosa pitoresca, oferecendo aos hóspedes uma estadia tranquila e relaxante.",
         countryCode: "FR",
         coverImage:
           "https://images.unsplash.com/photo-1515496281361-241a540151a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80",
