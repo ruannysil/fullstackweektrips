@@ -18,6 +18,7 @@ module.exports = {
         primaryLighter: '#ddd6ea',
         grayPrimary: '#717171',
         grayLighter: '#bbbfbf',
+        walterWhile: '#e0e0fc',
       },
       textColor: {
         dark: '#717171',

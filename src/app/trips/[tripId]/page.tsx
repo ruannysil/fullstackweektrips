@@ -17,7 +17,7 @@ const getTripDetails = async (tripId: string) => {
 
 const TripDetails = async ({ params }: { params: { tripId: string } }) => {
   const trip = await getTripDetails(params.tripId);
-  if (!trip) return <div>Loading....</div>;
+  if (!trip) return <div>Carregando...</div>;
   return (
     <div className="container mx-auto">
       <TripHeader trip={trip} />
