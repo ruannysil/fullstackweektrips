@@ -3,15 +3,20 @@
 import { Trip } from '@prisma/client';
 import ptBR from 'date-fns/locale/pt-BR';
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import ReactCountryFlag from 'react-country-flag';
 import Button from '@/components/Button';
+import { useSession } from 'next-auth/react';
 
 const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
   const [trip, setTrip] = useState<Trip | null>();
   const [totalPrice, setTotalPrice] = useState<number>(0);
+
+  const router = useRouter();
+
+  const { status } = useSession();
 
   const searchParams = useSearchParams();
 
@@ -31,8 +36,13 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
       setTrip(trip);
       setTotalPrice(totalPrice);
     };
+
+    if (status === 'unauthenticated') {
+      router.push("/")
+    }
+
     fetchTrip();
-  }, []);
+  }, [status]);
 
   console.log({ trip });
   if (!trip) return null;
@@ -87,7 +97,7 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
           <p>{format(endDate, "dd 'de' MMMM", { locale: ptBR })}</p>
         </div>
 
-        <h3 className='mt-5 font-semibold'>Hóspedes</h3>
+        <h3 className="mt-5 font-semibold">Hóspedes</h3>
         <p>{guests} hóspedes</p>
 
         <Button className="mt-5">Finalizar Compra</Button>
