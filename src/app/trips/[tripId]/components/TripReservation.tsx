@@ -3,8 +3,8 @@
 import Button from '@/components/Button';
 import DatePicker from '@/components/DatePicker';
 import Input from '@/components/Input';
-import { Decimal } from '@prisma/client/runtime/library';
-import { differenceInDays, endOfDay } from 'date-fns';
+import { differenceInDays } from 'date-fns';
+import { useRouter } from 'next/navigation';
 
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -39,6 +39,8 @@ const TripReservation = ({
     formState: { errors },
   } = useForm<TripReservationForm>();
 
+  const router = useRouter();
+
   const onSubmit = async (data: TripReservationForm) => {
     const response = await fetch('http://localhost:3000/api/trips/check', {
       method: 'POST',
@@ -67,19 +69,32 @@ const TripReservation = ({
     }
 
     if (res?.error?.code === 'INVALID_START_DATE') {
-      setError('startDate', {
+      return setError('startDate', {
         type: 'manual',
         message: 'Data inválida.',
       });
     }
 
     if (res?.error?.code === 'INVALID_END_DATE') {
-       return setError('endDate', {
+      return setError('endDate', {
         type: 'manual',
         message: 'Data inválida.',
       });
     }
 
+    if (data.guests === 0) {
+      setError('guests', {
+        type: 'manual',
+        message: 'Número de hóspedes deve ser maior que zero.',
+      });
+      return;
+    }
+
+    router.push(
+      `/trips/${tripId}/confirmation?startDate=${data.startDate?.toISOString()}&endDate=${data.endDate?.toISOString()}&guests=${
+        data.guests
+      }`,
+    );
   };
 
   const startDate = watch('startDate');
@@ -143,14 +158,16 @@ const TripReservation = ({
             value: maxGuests,
             message: `Número de hóspedes não pode ser maior que  ${maxGuests}.`,
           },
-
-         
+          min: {
+            value: 1,
+            message: 'Número de hóspedes deve ser maior que zero.',
+          },
         })}
         placeholder={`Número de hóspedes (max: ${maxGuests})`}
         className="mt-4"
         error={!!errors?.guests}
         errorMessage={errors?.guests?.message}
-        type='number'
+        type="number"
         min={1}
       />
 
