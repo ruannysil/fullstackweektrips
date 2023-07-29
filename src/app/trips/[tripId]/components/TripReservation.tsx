@@ -4,12 +4,13 @@ import Button from '@/components/Button';
 import DatePicker from '@/components/DatePicker';
 import Input from '@/components/Input';
 import { Decimal } from '@prisma/client/runtime/library';
-import { differenceInDays } from 'date-fns';
+import { differenceInDays, endOfDay } from 'date-fns';
 
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 interface TripReservationProps {
+  tripId: string;
   tripStarDate: Date;
   tripEndDate: Date;
   maxGuests: number;
@@ -23,26 +24,65 @@ interface TripReservationForm {
 }
 
 const TripReservation = ({
+  tripId,
   maxGuests,
   tripEndDate,
   tripStarDate,
-  pricePerDay
+  pricePerDay,
 }: TripReservationProps) => {
   const {
     register,
     handleSubmit,
     control,
     watch,
+    setError,
     formState: { errors },
   } = useForm<TripReservationForm>();
 
-  const onSubmit = (data: any) => {
-    console.log({ data });
+  const onSubmit = async (data: TripReservationForm) => {
+    const response = await fetch('http://localhost:3000/api/trips/check', {
+      method: 'POST',
+      body: Buffer.from(
+        JSON.stringify({
+          startDate: data.startDate,
+          endDate: data.endDate,
+          tripId,
+        }),
+      ),
+    });
+
+    const res = await response.json();
+    console.log({ res });
+
+    if (res?.error?.code === 'TRIP_ALREADY_RESERVED') {
+      setError('startDate', {
+        type: 'manual',
+        message: 'Esta data já está reservada.',
+      });
+
+      return setError('endDate', {
+        type: 'manual',
+        message: 'Esta data já está reservada.',
+      });
+    }
+
+    if (res?.error?.code === 'INVALID_START_DATE') {
+      setError('startDate', {
+        type: 'manual',
+        message: 'Data inválida.',
+      });
+    }
+
+    if (res?.error?.code === 'INVALID_END_DATE') {
+      setError('endDate', {
+        type: 'manual',
+        message: 'Data inválida.',
+      });
+    }
   };
 
   const startDate = watch('startDate');
   const endDate = watch('endDate');
-  
 
   return (
     <div className="flex flex-col px-5">
@@ -107,7 +147,11 @@ const TripReservation = ({
 
       <div className="flex justify-between mt-2">
         <p className="text-sm font-medium text-primaryDarker">Total:</p>
-        <p className="text-sm font-medium text-primaryDarker">{startDate && endDate ? `R$${differenceInDays(endDate, startDate) * pricePerDay}` ?? 1 : "R$ 0"}</p>
+        <p className="text-sm font-medium text-primaryDarker">
+          {startDate && endDate
+            ? `R$${differenceInDays(endDate, startDate) * pricePerDay}` ?? 1
+            : 'R$ 0'}
+        </p>
       </div>
       <div className="w-full pb-10 border-b border-grayLighter">
         <Button

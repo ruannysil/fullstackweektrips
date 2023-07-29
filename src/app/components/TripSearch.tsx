@@ -15,7 +15,7 @@ const TripSearch = () => {
         <Input placeholder="Onde você quer ir ?" />
 
         <div className="flex gap-4">
-          <DatePicker placeholderText="Data da ida" onChange={() => {}} />
+          <DatePicker placeholderText="Data da ida" onChange={() => {}} className='w-full' />
           <CurrencyInput placeholder="Orçamento" />
         </div>
         <Button>Buscar</Button>
