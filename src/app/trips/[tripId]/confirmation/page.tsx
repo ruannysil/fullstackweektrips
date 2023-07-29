@@ -31,14 +31,18 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
         }),
       });
 
-      const { trip, totalPrice } = await response.json();
+      const res = await response.json();
 
-      setTrip(trip);
-      setTotalPrice(totalPrice);
+      if (res?.error) {
+        router.push('/');
+      }
+
+      setTrip(res.trip);
+      setTotalPrice(res.totalPrice);
     };
 
     if (status === 'unauthenticated') {
-      router.push("/")
+      router.push('/');
     }
 
     fetchTrip();
