@@ -19,7 +19,6 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
 
   const { status, data } = useSession();
 
-  console.log(data?.user);
 
   const searchParams = useSearchParams();
 
@@ -51,7 +50,7 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
     fetchTrip();
   }, [status, searchParams, params, router]);
 
-  // console.log({ trip });
+
 
   if (!trip) return null;
 
