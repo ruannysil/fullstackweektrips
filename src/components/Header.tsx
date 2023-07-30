@@ -7,13 +7,13 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import Link from 'next/link';
 
 const Header = () => {
-  const [menuIsOpen, setMenuIsOpne] = useState(false);
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
   const { status, data } = useSession();
 
   const handleLoginClick = () => signIn();
   const handleLogoutClick = () => signOut();
 
-  const handleMenuClick = () => setMenuIsOpne(!menuIsOpen);
+  const handleMenuClick = () => setMenuIsOpen(!menuIsOpen);
 
   return (
     <div className="container flex items-center justify-between p-5 py-0 h-[93px] mx-auto">
@@ -49,18 +49,24 @@ const Header = () => {
           />
 
           {menuIsOpen && (
-            <div className="absolute left-0 z-50 flex flex-col items-center justify-center w-full h-[100px] bg-white rounded-lg shadow-md top-14">
-             <Link href="/my-trips">
-             <button className="pb-2 text-xs font-semibold border-b border-solid text-primary border-grayLighter">
-                Minhas viagens
-              </button>
+            <div className="absolute left-0 z-50 flex flex-col items-center justify-center w-full h-[120px] bg-white rounded-lg shadow-md top-14">
+              <Link href="/" onClick={() => setMenuIsOpen(false)} className='w-full'>
+                <button className="w-full pb-2 text-xs font-semibold border-b border-solid text-primary border-grayLighter">
+                  início
+                </button>
+              </Link>
 
-             </Link>
+              <Link href="/my-trips" onClick={() => setMenuIsOpen(false)}>
+                <button className="w-full pb-2 text-xs font-semibold border-b border-solid text-primary border-grayLighter">
+                  Minhas viagens
+                </button>
+              </Link>
+
               <button
-                className="pt-2 text-xs font-semibold text-primary"
+                className="w-full pt-2 text-xs font-semibold text-primary"
                 onClick={handleLogoutClick}
               >
-               Sair
+                Sair
               </button>
             </div>
           )}
