@@ -75,7 +75,7 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
       });
     }
 
-    router.push('/');
+    router.push("/my-trips");
 
     toast.success('reserva realizada com sucess!', {
       position: 'bottom-center',
