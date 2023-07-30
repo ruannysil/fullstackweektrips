@@ -60,8 +60,7 @@ const Header = () => {
                 className="pt-2 text-xs font-semibold text-primary"
                 onClick={handleLogoutClick}
               >
-                Logout
-                Logout
+               Sair
               </button>
             </div>
           )}
