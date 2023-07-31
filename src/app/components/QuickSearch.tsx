@@ -1,5 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import {MdCottage} from "react-icons/md"
 
 const QuickSearch = () => {
   return (
@@ -14,19 +16,31 @@ const QuickSearch = () => {
 
       <div className='flex justify-between w-full mt-5'>
         <div className='flex flex-col items-center gap-1'>
-          <Image width={35} height={35} src="/hotel-icon.png" alt="Hotel" />
-          <p className='text-sm text-grayPrimary'>Hotel</p>
+          <Link href={`/trips/search?text=hotel`} className='flex flex-col items-center transition-all hover:text-primary '>
+            <Image width={35} height={35} src="/hotel-icon.png" alt="Hotel" />
+          <p className='text-sm text-grayPrimary hover:text-primary'>Hotel</p>
+          </Link>
         </div>
         <div className='flex flex-col items-center gap-1'>
-          <Image width={35} height={35} src="/Castle.png" alt="Chalé" />
-          <p className='text-sm text-grayPrimary'>Chalé</p>
-        </div><div className='flex flex-col items-center gap-1'>
+          <Link href={`/trips/search?text=Chalé`} className='flex flex-col items-center transition-all'>
+  
+          <Image width={35} height={35} src="/Chale.png" alt="Chalé" />
+          <p className='text-sm text-grayPrimary hover:text-primary'>Chalé</p>
+          </Link>
+        </div>
+        
+        <div className='flex flex-col items-center gap-1'>
+        <Link href={`/trips/search?text=fazenda`} className='flex flex-col items-center transition-all hover:text-primary '>
           <Image width={35} height={35} src="/Cabin.png" alt="Fazenda" />
-          <p className='text-sm text-grayPrimary'>Fazenda</p>
+          <p className='text-sm text-grayPrimary hover:text-primary'>Fazenda</p>
+        </Link>
         </div>
+        
         <div className='flex flex-col items-center gap-1'>
+        <Link href={`/trips/search?text=pousada`}className='flex flex-col items-center transition-all hover:text-primary'>
           <Image width={35} height={35} src="/Tent.png" alt="Pousada" />
-          <p className='text-sm text-grayPrimary'>Pousada</p>
+          <p className='text-sm text-grayPrimary hover:text-primary'>Pousada</p>
+        </Link>
         </div>
       </div>
     </div>
