@@ -22,7 +22,7 @@ const Trips = () => {
     };
 
     fetchTrips();
-  }, []);
+  }, [searchParams]);
 
   return (
     <div className="container flex flex-col items-center p-5 mx-auto lg:items-start lg:pt-10">

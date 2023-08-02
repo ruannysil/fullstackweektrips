@@ -1,7 +1,9 @@
+'use client'
+
 import { Prisma } from '@prisma/client';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import UserReservationItem from './components/UserReservationItem';
 import Link from 'next/link';
 import Button from '@/components/Button';
@@ -13,20 +15,24 @@ const MyTrips = () => {
   const { status, data } = useSession();
   const router = useRouter();
 
-  const fetchReservations = async () => {
+  const fetchReservations = useCallback(async () => {
     const response = await fetch(
-      `/api/user/${(data?.user as any)?.id}/reservaitons`,
+      `/api/user/${(data?.user as any)?.id}/reservations`,
     );
     const json = await response.json();
     setReservations(json);
-  };
+  }, [data?.user]);
 
   useEffect(() => {
-    if (status === 'unauthenticated') {
-      return router.push('/');
-    }
+    const checkAuthentication = async () => {
+      if (status === 'unauthenticated') {
+        await router.push('/');
+      } else {
+        fetchReservations();
+      }
+    };
 
-    fetchReservations();
+    checkAuthentication();
   }, [status, fetchReservations, router]);
 
   const handleDeleteReservation = (reservationId: any) => {
