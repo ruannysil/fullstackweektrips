@@ -6,14 +6,7 @@ import {Trip} from '@prisma/client'
 import { useEffect } from 'react';
 import TripItem from '@/components/TripItem';
 
-interface GetTripsParams {
-  text: string;
-  startDate: Date | null;
-  budget?: string;
-}
-
-
-const Trip = async () => {
+const Trips = async () => {
   const [trips, seTrips] = useState<Trip[]>([])
   const searchParams = useSearchParams();
 
@@ -39,4 +32,4 @@ const Trip = async () => {
   </div>;
 };
 
-export default Trip;
+export default Trips;
