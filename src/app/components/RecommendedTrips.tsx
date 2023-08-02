@@ -1,15 +1,13 @@
 import TripItem from '@/components/TripItem';
-import { Trip } from '@prisma/client';
-import React from 'react';
+import { prisma } from '@/lib/prisma';
+import { PrismaClient, Trip } from '@prisma/client';
 
 
 
 const RecommendedTrips = async () => {
-
-  const data = await fetch(`${process.env.HOST_URL}/hello`).then((res) =>
+  const data = await fetch(`http://localhost:3000/hello`).then((res) =>
   res.json(),
 );
- 
 
   return (
     <div className="container p-5 mx-auto">
@@ -30,3 +28,13 @@ const RecommendedTrips = async () => {
 };
 
 export default RecommendedTrips;
+
+
+
+export async function getStaticProps() {
+  const prisma = new PrismaClient()
+
+  return {
+    props : { }
+  }
+}
