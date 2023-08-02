@@ -6,3 +6,5 @@ export async function GET() {
 
   return new NextResponse(JSON.stringify(trips), { status: 200 });
 }
+
+

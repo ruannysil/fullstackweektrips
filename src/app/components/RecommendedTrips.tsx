@@ -2,10 +2,15 @@ import TripItem from '@/components/TripItem';
 import { Trip } from '@prisma/client';
 import React from 'react';
 
+
+
 const RecommendedTrips = async () => {
-  const data = await fetch('http://localhost:3000/hello').then((res) =>
-    res.json(),
-  );
+
+  const data = await fetch(`${process.env.HOST_URL}/hello`).then((res) =>
+  res.json(),
+);
+ 
+
   return (
     <div className="container p-5 mx-auto">
       <div className="flex items-center">
