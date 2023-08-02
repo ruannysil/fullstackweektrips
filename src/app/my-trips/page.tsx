@@ -7,7 +7,9 @@ import Link from 'next/link';
 import Button from '@/components/Button';
 
 const MyTrips = () => {
-  const [reservations, setReservations] = useState<Prisma.TripReservationGetPayload<{ include: { trip: true } }>[]>([]);
+  const [reservations, setReservations] = useState<
+    Prisma.TripReservationGetPayload<{ include: { trip: true } }>[]
+  >([]);
   const { status, data } = useSession();
   const router = useRouter();
 
@@ -25,11 +27,13 @@ const MyTrips = () => {
     }
 
     fetchReservations();
-  }, [status, router]); 
+  }, [status, fetchReservations, router]);
 
   const handleDeleteReservation = (reservationId: any) => {
     setReservations((prevReservations) =>
-      prevReservations.filter((reservation) => reservation.id !== reservationId)
+      prevReservations.filter(
+        (reservation) => reservation.id !== reservationId,
+      ),
     );
   };
 
@@ -38,11 +42,19 @@ const MyTrips = () => {
       <h1 className="text-xl font-semibold text-primaryDarker">
         Minhas Viagens
       </h1>
-      {reservations.length > 0 ? (reservations?.map((reservation) => (
-        <UserReservationItem key={reservation.id} reservation={reservation} onDelete={handleDeleteReservation} />
-      ))) : (
-        <div className='flex flex-col'>
-          <p className='mt-2 font-medium text-primaryDarker'>Você não tem nenhuma reserva!😢😢</p>
+      {reservations.length > 0 ? (
+        reservations?.map((reservation) => (
+          <UserReservationItem
+            key={reservation.id}
+            reservation={reservation}
+            onDelete={handleDeleteReservation}
+          />
+        ))
+      ) : (
+        <div className="flex flex-col">
+          <p className="mt-2 font-medium text-primaryDarker">
+            Você não tem nenhuma reserva!😢😢
+          </p>
           <Link href="/">
             <Button className="w-full mt-2">Fazer Reservar</Button>
           </Link>
